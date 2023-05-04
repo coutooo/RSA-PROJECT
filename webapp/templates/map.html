@@ -1,27 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Walking Map</title>
+  <title>
+    Walk and Seat
+    <span class="heart-icon">&#10084;</span>
+  </title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    #map {
-      height: 500px;
-    }
+    /* Add your custom styles here */
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f2f2f2;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     h1 {
       text-align: center;
+      color: #333;
+      margin-top: 0;
+      position: relative;
+    }
+    .heart-icon {
+      color: red;
+      position: absolute;
+      top: 0;
+      padding-left: 10px;
+      font-size: 24px;
+    }
+    #map {
+      height: 500px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .back-link {
       text-align: center;
-      margin-bottom: 40px;
-      margin-top: 40px;
+      margin-top: 20px;
     }
     .back-link a {
       display: inline-block;
@@ -31,18 +53,26 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .back-link a:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
-  <div class="container"></div>
-  <div id="map"></div>
+  <div class="container">
+    <h1>
+      Walk and Seat
+      <span class="heart-icon">&#10084;</span>
+    </h1>
+    <div id="map"></div>
+    <div class="back-link">
+      <a href="/">Go Back</a>
+    </div>
+  </div>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="{{ url_for('static', filename='script.js') }}"></script> 
-  <div class="back-link">
-    <a href="/">Go Back</a>
-  </div>
-</div>
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

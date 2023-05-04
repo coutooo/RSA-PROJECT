@@ -6,21 +6,38 @@
     /* Add your custom styles here */
     body {
       font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
     }
     .container {
       max-width: 800px;
       margin: 0 auto;
       padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     h1 {
       text-align: center;
+      color: #333;
+      margin-top: 0;
+    }
+    .heart-icon {
+      color: red;
+      position: absolute;
+      top: 10;
+      padding-left: 10px;
+      font-size: 24px;
     }
     .description {
       text-align: center;
       margin-bottom: 40px;
+      color: #777;
     }
     .map-link {
       text-align: center;
+      margin-top: 20px;
     }
     .map-link a {
       display: inline-block;
@@ -30,19 +47,26 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+    .map-link a:hover {
+      background-color: #45a049;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Walk and Seat</h1>
+    <h1>
+      Walk and Seat
+      <span class="heart-icon">&#10084;</span>
+    </h1>
     <div class="description">
-      <p>Walk while founding available seats to eat!</p>
-      <p>Discover the menus, the promotions, available seats and much more.</p>
+      <p>Walk while finding available seats to eat!</p>
+      <p>Discover the menus, promotions, available seats, and much more.</p>
     </div>
     <div class="map-link">
-        <a href="map">Start Tracking Now</a>
-      </div>      
+      <a href="map">Start Tracking Now</a>
+    </div>
   </div>
 </body>
 </html>
