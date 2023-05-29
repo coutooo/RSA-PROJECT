@@ -79,6 +79,69 @@ services:
         sysctls:      
             kernel.msgmax:  65536
             kernel.msgmnb:  65536
+
+    ipfs1:
+        container_name: ipfs1
+        image: ipfs/kubo
+        restart: always
+        ports:
+         - "4001:4001" # ipfs swarm 
+         - "5001:5001" # ipfs api 
+         - "8081:8080" # ipfs gateway 
+        networks:
+         - vanetzalan0
+        volumes:
+         - ./compose/ipfs/ipfs1:/data/ipfs
+         - ./shared/:/root/shared/:rw
+        entrypoint: >
+            sh -c '
+                ipfs init;
+                ipfs daemon &
+                ./root/shared/ipfs-bootstrap.sh &
+                wait
+            '
+
+    ipfs2:
+        container_name: ipfs2
+        image: ipfs/kubo
+        restart: always
+        ports:
+         - "4002:4001" # ipfs swarm 
+         - "5002:5001" # ipfs api 
+         - "8082:8080" # ipfs gateway 
+        networks:
+         - vanetzalan0
+        volumes:
+         - ./compose/ipfs/ipfs2:/data/ipfs
+         - ./shared/:/root/shared/:rw
+        entrypoint: >
+            sh -c '
+                ipfs init;
+                ipfs daemon &
+                ./root/shared/ipfs-bootstrap.sh &
+                wait
+            '
+
+    ipfs3:
+        container_name: ipfs3
+        image: ipfs/kubo
+        restart: always
+        ports:
+         - "4003:4001" # ipfs swarm 
+         - "5003:5001" # ipfs api 
+         - "8083:8080" # ipfs gateway 
+        networks:
+         - vanetzalan0
+        volumes:
+         - ./compose/ipfs/ipfs3:/data/ipfs
+         - ./shared/:/root/shared/:rw
+        entrypoint: >
+            sh -c '
+                ipfs init;
+                ipfs daemon &
+                ./root/shared/ipfs-bootstrap.sh &
+                wait
+            '
             
 networks:
   vanetzalan0:
