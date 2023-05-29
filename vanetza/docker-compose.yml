@@ -8,7 +8,7 @@ services:
             - "NET_ADMIN"
         environment:
             - VANETZA_STATION_ID=1
-            - VANETZA_STATION_TYPE=15
+            - VANETZA_STATION_TYPE=13
             - VANETZA_MAC_ADDRESS=6e:06:e0:03:00:01
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
@@ -28,7 +28,7 @@ services:
             - "NET_ADMIN"
         environment:
             - VANETZA_STATION_ID=3
-            - VANETZA_STATION_TYPE=15
+            - VANETZA_STATION_TYPE=13
             - VANETZA_MAC_ADDRESS=6e:06:e0:03:00:01
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
@@ -142,7 +142,31 @@ services:
                 ./root/shared/ipfs-bootstrap.sh &
                 wait
             '
-            
+    #cluster:
+    #    container_name: ${clustername}
+    #    image: ipfs/ipfs-cluster
+    #    restart: always
+    #    depends_on:
+    #     - ipfs1
+    #     - ipfs2
+    #     - ipfs3
+    #    environment:
+    #        CLUSTER_PEERNAME: ${clustername}
+    #        CLUSTER_SECRET: ${sharedkey}
+    #        CLUSTER_IPFSHTTP_NODEMULTIADDRESS: "/dns4/ipfs1/tcp/5001" #,"/dns4/ipfs2/tcp/5001","/dns4/ipfs3/tcp/5001"]
+    #        CLUSTER_CRDT_TRUSTEDPEERS: '*' # Trust all peers in Cluster
+    #        CLUSTER_RESTAPI_HTTPLISTENMULTIADDRESS: /ip4/0.0.0.0/tcp/9094 # expose API
+    #        CLUSTER_MONITORPINGINTERVAL: 2s # Speed up peer discovery
+    #    ports:
+    #        - "9094:9094" # http api
+    #        - "9095:9095" # proxy api
+    #        - "9096:9096" # cluster swarm, other peers connect via this port
+    #    volumes:
+    #        - ./compose/ipfs/${clustername}:/data/ipfs-cluster
+    #        - ./shared/:/root/shared/:rw
+    #    entrypoint: ["/root/shared/entrypoint-cluster.sh"]     # VM: remove entrypoint to deploy
+
+  
 networks:
   vanetzalan0:
     external: true
