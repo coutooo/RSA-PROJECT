@@ -13,6 +13,9 @@ services:
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
+            - VANETZA_CAM_PERIODICITY=0
+            - VANETZA_LATITUDE=40.64301567606588
+            - VANETZA_LONGITUDE=-8.656095959997351
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.10
@@ -33,6 +36,9 @@ services:
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
+            - VANETZA_CAM_PERIODICITY=0
+            - VANETZA_LATITUDE=40.64269583432027
+            - VANETZA_LONGITUDE=-8.655832847794068
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.11
@@ -40,8 +46,8 @@ services:
             kernel.msgmax:  65536
             kernel.msgmnb:  65536
 
-    obu:
-        hostname: obu
+    vru1:
+        hostname: vru
         restart: always
         image: code.nap.av.it.pt:5050/mobility-networks/vanetza:latest
         cap_add:
@@ -53,6 +59,7 @@ services:
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
+            - VANETZA_CAM_PERIODICITY=0
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.20
@@ -60,8 +67,8 @@ services:
             kernel.msgmax:  65536
             kernel.msgmnb:  65536
 
-    obu2:
-        hostname: obu2
+    vru2:
+        hostname: vru
         restart: always
         image: code.nap.av.it.pt:5050/mobility-networks/vanetza:latest
         cap_add:
@@ -73,6 +80,7 @@ services:
             - VANETZA_INTERFACE=br0
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
+            - VANETZA_CAM_PERIODICITY=0
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.21
