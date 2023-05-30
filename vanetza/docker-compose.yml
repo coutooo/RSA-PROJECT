@@ -14,8 +14,8 @@ services:
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
             - VANETZA_CAM_PERIODICITY=0
-            - VANETZA_LATITUDE=40.64301567606588
-            - VANETZA_LONGITUDE=-8.656095959997351
+            - VANETZA_LATITUDE=40.6429
+            - VANETZA_LONGITUDE=-8.65608
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.10
@@ -37,8 +37,8 @@ services:
             - START_EMBEDDED_MOSQUITTO=true
             - SUPPORT_MAC_BLOCKING=true
             - VANETZA_CAM_PERIODICITY=0
-            - VANETZA_LATITUDE=40.64269583432027
-            - VANETZA_LONGITUDE=-8.655832847794068
+            - VANETZA_LATITUDE=40.64255
+            - VANETZA_LONGITUDE=-8.65568
         networks:
             vanetzalan0:
                 ipv4_address: 192.168.98.11

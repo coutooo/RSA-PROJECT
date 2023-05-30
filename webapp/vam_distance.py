@@ -13,26 +13,28 @@ def on_connect(client, userdata, flags, rc):
 # É chamada automaticamente sempre que recebe uma mensagem nos tópicos subscritos em cima
 def on_message(client, userdata, msg):
     global vam_coords_list
+    tmp = 0
     message = json.loads(msg.payload.decode('utf-8'))
 
     #print('Topic: ' + str(msg.topic))
     #print('Message' + str(message))
 
-    rsu1_coords=(40.64301567606588,-8.656095959997351)
-
+    rsu1_coords=(40.6429,-8.65608)
 
     latitude = message["fields"]["vam"]["vamParameters"]["basicContainer"]["referencePosition"]["latitude"]
     longitude = message["fields"]["vam"]["vamParameters"]["basicContainer"]["referencePosition"]["longitude"]
 
     vam_coords=(latitude,longitude)
 
-    distance = geodesic(rsu1_coords, vam_coords).meters
+    vam_coords_list.append(vam_coords)
+    #distance = geodesic(rsu1_coords, vam_coords).meters
 
-    if distance < 50:
-        print("Send information to the client from RSU 1 ({:.4f} meters)".format(distance))
-        vam_coords_list.append(vam_coords)  # Add vam_coords to the list
-    else:
-        print("Client too far from RSU 1 ({:.4f} meters)".format(distance))
+    #if distance < 50 and tmp != distance:
+    #    tmp = distance
+    #    print("Send information to the client from RSU 1 ({:.4f} meters)".format(distance))
+    #    vam_coords_list.append(vam_coords)  # Add vam_coords to the list
+    #else:
+    #    print("Client too far from RSU 1 ({:.4f} meters)".format(distance))
 
     return vam_coords_list
 
