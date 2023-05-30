@@ -39,10 +39,16 @@ def on_message(client, userdata, msg):
     return vam_coords_list
 
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
-client.connect("192.168.98.10", 1883, 60)  # vru 1
+rsu1 = mqtt.Client()
+rsu1.on_connect = on_connect
+rsu1.on_message = on_message
+rsu1.connect("192.168.98.10", 1883, 60)  # rsu 1
 
-threading.Thread(target=client.loop_forever).start()
+rsu2 = mqtt.Client()
+rsu2.on_connect = on_connect
+rsu2.on_message = on_message
+rsu2.connect("192.168.98.11", 1884, 60)  # rsu 2
+
+threading.Thread(target=rsu1.loop_forever).start()
+threading.Thread(target=rsu2.loop_forever).start()
 
