@@ -73,5 +73,62 @@
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+  <style>
+    .container1 {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+  
+    .data-section {
+      margin-bottom: 20px;
+    }
+  
+    .data-section h2 {
+      color: #333;
+      margin-top: 0;
+    }
+  
+    .data-item {
+      margin-bottom: 10px;
+    }
+  
+    .data-item span {
+      font-weight: bold;
+    }
+  </style>
+  
+  <div id="response" class="container1">
+    <div class="delete-button">
+      <button class="btn btn-danger" id="deleteButton" style="float: right;">X</button>
+    </div>    
+    <div class="data-section">
+      <h2>Restaurant Details</h2>
+      <div class="data-item">
+        <span>Restaurant:</span> <span id="restaurant"></span>
+      </div>
+      <div class="data-item">
+        <span>RSU:</span> <span id="id"></span>
+      </div>
+    </div>
+  
+    <div class="data-section">
+      <h2>Menu</h2>
+      <ul id="menu"></ul>
+    </div>
+  
+    <div class="data-section">
+      <h2>Available Tables</h2>
+      <ul id="available_tables"></ul>
+    </div>
+  </div>
+  
+  
+  
+
 </body>
 </html>

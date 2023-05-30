@@ -77,7 +77,7 @@ def generate(coordinate):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("192.168.98.10", 1883, 60)  # .10 -> rsu1
+client.connect("192.168.98.20", 1883, 60)  # .10 -> vru1
 
 threading.Thread(target=client.loop_forever).start()
 

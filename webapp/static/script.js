@@ -80,6 +80,14 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.send();
   }
 
+  // Add event listener to the delete button
+  const deleteButton = document.getElementById('deleteButton');
+  deleteButton.addEventListener('click', () => {
+    const responseElement = document.getElementById('response');
+    responseElement.style.display = 'none';
+  });
+
+
   // Function to animate the marker along the given coordinates
   function animateMarker() {
     var index = 0;
@@ -93,17 +101,60 @@ document.addEventListener("DOMContentLoaded", function () {
       // Check if the person icon is inside the circle rsu1
       var personLatLng = marker.getLatLng();
       if (circle.getBounds().contains(personLatLng)) {
+        fetch('http://localhost:8080/ipfs/Qme6vrVn9NKk2SaUTMqtNxi5oLZ5zPYANq4EpJ6Kiq6hDu')
+        .then(response => response.json())
+        .then(data => {
+          response.style.display = 'block';
+          //data = JSON.parse(data);
+          console.log(data);
+          //console.log(data);
+          // Restaurant Details
+          document.getElementById('restaurant').innerText = data.restaurant;
+          document.getElementById('id').innerText = data.id;
+      
+          
+          // Menu
+          const menuList = document.getElementById('menu');
+          data.menu.forEach(item => {
+            // Check if item already exists in the list
+            const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
+            if (!existingItem) {
+              const li = document.createElement('li');
+              li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
+              li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
+              menuList.appendChild(li);
+            }
+          });
+      
+          // Available Tables
+          const tablesList = document.getElementById('available_tables');
+          data.available_tables.forEach(table => {
+            // Check if table already exists in the list
+            const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
+            if (!existingTable) {
+              const li = document.createElement('li');
+              li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
+              li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
+              tablesList.appendChild(li);
+            }
+          });
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          // Handle the error here
+        });      
         circle.setStyle({ color: 'green', fillColor: 'green' });
       } else {
+        //document.getElementById('response').innerText = "";
         circle.setStyle({ color: 'red', fillColor: 'red' });
       }
 
       // inside circle rsu2
-      /*if (circle2.getBounds().contains(personLatLng)) {
+      if (circle2.getBounds().contains(personLatLng)) {
         circle2.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         circle2.setStyle({ color: 'red', fillColor: 'red' });
-      }*/
+      }
 
       index = (index + 1) % vamCoords.length;
 
