@@ -1,0 +1,35 @@
+{
+    "restaurant": "O Bairro",
+    "id": 2,
+    "menu":[
+        {
+            "name": "Shellfish",
+            "price": 30.00,
+            "description": "Shellfish with garlic and coriander"
+        },
+        {
+            "name": "Francesinha",
+            "price": 14.00,
+            "description": "Best sandwich in the world"
+        },
+        {
+            "name": "Salad",
+            "price": 8.00,
+            "description": "Salad with tomato, cucumber and lettuce"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 0,
+            "seats": 2
+        },
+        {
+            "id": 3,
+            "seats": 4
+        },
+        {
+            "id": 14,
+            "seats": 2
+        }
+    ]
+}

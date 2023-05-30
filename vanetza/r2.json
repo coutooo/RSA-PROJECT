@@ -1,0 +1,35 @@
+{
+    "restaurant": "Gran Torino",
+    "id": 1,
+    "menu":[
+        {
+            "name": "Pizza",
+            "price": 10.00,
+            "description": "Pizza with cheese and tomato sauce"
+        },
+        {
+            "name": "Pasta",
+            "price": 12.00,
+            "description": "Pasta with tomato sauce"
+        },
+        {
+            "name": "Salad",
+            "price": 8.00,
+            "description": "Salad with tomato, cucumber and lettuce"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 0,
+            "seats": 2
+        },
+        {
+            "id": 1,
+            "seats": 4
+        },
+        {
+            "id": 2,
+            "seats": 6
+        }
+    ]
+}
