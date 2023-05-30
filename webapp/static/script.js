@@ -21,9 +21,53 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateMarker(lat, lng) {
       marker.setLatLng([lat, lng]);
     }
+
+    var vamCoords = []; // Initialize an empty array to store the vamCoords
+    // Function to request the vam_coords from the server
+    function requestVamCoords() {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', '/get_vam_coords', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var response = JSON.parse(xhr.responseText);
+          //console.log(response); // Print the response to the console
+          vamCoords = response;
+          console.log(vamCoords);
+    
+          if (vamCoords.length > 0) {
+            animateMarker();
+          }
+        }
+      };
+      xhr.send();
+    }
+
+    // Function to animate the marker along the given coordinates
+    function animateMarker() {
+      var index = 0;
+    
+      function updatePosition() {
+        var coord = vamCoords[index];
+        var lat = coord.latitude;
+        var lng = coord.longitude;
+        updateMarker(lat, lng);
+        index = (index + 1) % vamCoords.length;
+    
+        if (index === 0) {
+          // Restart the animation after a delay (adjust the delay as needed)
+          setTimeout(animateMarker, 1000); // Delay in milliseconds (2 seconds-2000)
+        } else {
+          // Schedule the next position update without a delay
+          updatePosition();
+        }
+      }
+    
+      // Start the animation
+      updatePosition();
+    }
   
     // Example coordinates
-    var coordinates = [
+    /*var coordinates = [
       [40.64298146111145, -8.656243938860625], // gran turino
       [40.642887841187765, -8.656163472597399],
       [40.64287970031862, -8.656007904488495],
@@ -46,5 +90,8 @@ document.addEventListener("DOMContentLoaded", function () {
   
     // Start animating the marker
     animateMarker();
+    */
+    // Request vam_coords from the server every 5 seconds -> 5000
+    setInterval(requestVamCoords, 3000);
   });
   

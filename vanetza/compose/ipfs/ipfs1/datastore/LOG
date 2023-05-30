@@ -423,3 +423,42 @@
 00:11:13.425428 version@stat F·[2 1] S·6KiB[4KiB 2KiB] Sc·[0.50 0.00]
 00:11:13.459852 db@janitor F·5 G·0
 00:11:13.459887 db@open done T·65.047062ms
+=============== May 30, 2023 (UTC) ===============
+00:42:31.288648 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+00:42:31.288851 version@stat F·[2 1] S·6KiB[4KiB 2KiB] Sc·[0.50 0.00]
+00:42:31.288870 db@open opening
+00:42:31.288914 journal@recovery F·1
+00:42:31.289113 journal@recovery recovering @89
+00:42:31.295130 memdb@flush created L0@91 N·4 S·2KiB "/F5..Q4A,v34":"/ip..NQA,v35"
+00:42:31.312298 version@stat F·[3 1] S·8KiB[6KiB 2KiB] Sc·[0.75 0.00]
+00:42:31.323594 db@janitor F·6 G·0
+00:42:31.323621 db@open done T·34.742304ms
+00:42:31.334922 db@close closing
+00:42:31.335174 db@close done T·251.002µs
+=============== May 30, 2023 (UTC) ===============
+00:42:31.399560 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+00:42:31.399923 version@stat F·[3 1] S·8KiB[6KiB 2KiB] Sc·[0.75 0.00]
+00:42:31.399979 db@open opening
+00:42:31.400068 journal@recovery F·1
+00:42:31.400491 journal@recovery recovering @92
+00:42:31.401013 version@stat F·[3 1] S·8KiB[6KiB 2KiB] Sc·[0.75 0.00]
+00:42:31.411461 db@janitor F·6 G·0
+00:42:31.411500 db@open done T·11.505873ms
+=============== May 30, 2023 (UTC) ===============
+00:57:18.462127 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+00:57:18.462703 version@stat F·[3 1] S·8KiB[6KiB 2KiB] Sc·[0.75 0.00]
+00:57:18.462807 db@open opening
+00:57:18.462928 journal@recovery F·1
+00:57:18.463258 journal@recovery recovering @94
+00:57:18.477929 memdb@flush created L0@96 N·4 S·2KiB "/F5..Q4A,v41":"/ip..NQA,v39"
+00:57:18.496822 version@stat F·[4 1] S·10KiB[8KiB 2KiB] Sc·[1.00 0.00]
+00:57:18.508006 db@janitor F·7 G·0
+00:57:18.508041 db@open done T·45.145866ms
+00:57:18.521786 table@compaction L0·4 -> L1·1 S·10KiB Q·42
+00:57:18.544550 table@build created L1@99 N·7 S·2KiB "/F5..Q4A,v41":"/pi..rty,v4"
+00:57:18.544608 version@stat F·[0 1] S·2KiB[0B 2KiB] Sc·[0.00 0.00]
+00:57:18.557392 table@compaction committed F-4 S-8KiB Ke·0 D·16 T·35.549144ms
+00:57:18.564039 table@remove removed @91
+00:57:18.564104 table@remove removed @76
+00:57:18.564157 table@remove removed @67
+00:57:18.564203 table@remove removed @60
