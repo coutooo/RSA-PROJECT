@@ -64,3 +64,23 @@
 23:34:37.522672 db@open done T·75.148899ms
 23:37:45.080938 db@close closing
 23:37:45.081086 db@close done T·147.675µs
+=============== May 30, 2023 (UTC) ===============
+23:54:12.845509 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+23:54:12.846160 version@stat F·[3] S·5KiB[5KiB] Sc·[0.75]
+23:54:12.846217 db@open opening
+23:54:12.846278 journal@recovery F·1
+23:54:12.846427 journal@recovery recovering @13
+23:54:12.847991 memdb@flush created L0@15 N·7 S·1KiB "/F5..64A,v37":"/pr..HXA,v40"
+23:54:12.892863 version@stat F·[4] S·7KiB[7KiB] Sc·[1.00]
+23:54:12.906637 db@janitor F·6 G·0
+23:54:12.906668 db@open done T·60.441819ms
+23:54:12.914258 table@compaction L0·4 -> L1·0 S·7KiB Q·43
+23:54:12.917865 table@build created L1@18 N·14 S·2KiB "/F5..64A,v37":"/pr..HXA,v40"
+23:54:12.917926 version@stat F·[0 1] S·2KiB[0B 2KiB] Sc·[0.00 0.00]
+23:54:12.919366 table@compaction committed F-3 S-4KiB Ke·0 D·25 T·5.05407ms
+23:54:12.919521 table@remove removed @12
+23:54:12.919603 table@remove removed @9
+23:54:12.919644 table@remove removed @2
+=============== May 31, 2023 (UTC) ===============
+01:17:18.060618 db@close closing
+01:17:18.062857 db@close done T·2.20323ms
