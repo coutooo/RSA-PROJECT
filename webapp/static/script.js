@@ -14,9 +14,14 @@ document.addEventListener("DOMContentLoaded", function () {
     iconSize: [24, 24], // Adjust the icon size as needed
   });
 
+  var personPurpleIcon = L.icon({
+    iconUrl: '/static/walking_purple.png',
+    iconSize: [24, 24], // Adjust the icon size as needed
+  });
+
   var marker = L.marker([0, 0], { icon: personIcon }).addTo(map);
 
-  var marker2 = L.marker([0, 0], { icon: personIcon }).addTo(map);
+  var marker2 = L.marker([0, 0], { icon: personPurpleIcon }).addTo(map);
 
   // Define the marker
   var rsuIcon = L.icon({
@@ -59,10 +64,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to update the marker position
   function updateMarker(lat, lng) {
-    marker.setLatLng([lat, lng]);
+    marker.setLatLng([lat, lng], { noMoveStart: true });
   }
   function updateMarker2(lat, lng) {
-    marker2.setLatLng([lat, lng]);
+    marker2.setLatLng([lat, lng], { noMoveStart: true });
   }
 
   var vamCoords = []; // Initialize an empty array to store the vamCoords
@@ -112,6 +117,13 @@ document.addEventListener("DOMContentLoaded", function () {
     responseElement.style.display = 'none';
   });
 
+  // Add event listener to the delete button
+  const deleteButton2 = document.getElementById('deleteButton2');
+  deleteButton2.addEventListener('click', () => {
+    const responseElement = document.getElementById('response2');
+    responseElement.style.display = 'none';
+  });
+
 
   var person1_inside  = 0
   var person1_inside2 = 0
@@ -129,28 +141,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Check if the person icon is inside the circle rsu1
       var personLatLng = marker.getLatLng();
-      if (circle.getBounds().contains(personLatLng) || person2_inside==1) {
-        if(circle.getBounds().contains(personLatLng))
-        {
-          person1_inside=1;
-        }
-        else{
-          person1_inside=0;
-        }
+      if (circle.getBounds().contains(personLatLng)) {
+        person1_inside = 1;
         fetch('http://localhost:8080/ipfs/Qme6vrVn9NKk2SaUTMqtNxi5oLZ5zPYANq4EpJ6Kiq6hDu')
         .then(response => response.json())
         .then(data => {
-          response.style.display = 'block';
+          const responseElement = document.getElementById('response');
+          responseElement.style.display = 'block';
           //data = JSON.parse(data);
           console.log(data);
           //console.log(data);
           // Restaurant Details
+          
           document.getElementById('restaurant').innerText = data.restaurant;
           document.getElementById('id').innerText = data.id;
       
           
           // Menu
           const menuList = document.getElementById('menu');
+          menuList.innerText = "";
           data.menu.forEach(item => {
             // Check if item already exists in the list
             const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
@@ -160,10 +169,10 @@ document.addEventListener("DOMContentLoaded", function () {
               li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
               menuList.appendChild(li);
             }
-          });
-      
+          })
           // Available Tables
           const tablesList = document.getElementById('available_tables');
+          tablesList.innerText = "";
           data.available_tables.forEach(table => {
             // Check if table already exists in the list
             const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
@@ -183,32 +192,29 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
         person1_inside=0;
         //document.getElementById('response').innerText = "";
-        circle.setStyle({ color: 'red', fillColor: 'red' });
+        if(person2_inside==0){
+          circle.setStyle({ color: 'red', fillColor: 'red' });
+        }
       }
 
       // inside circle rsu2
-      if (circle2.getBounds().contains(personLatLng) || person2_inside2==1) {
-        if(circle2.getBounds().contains(personLatLng))
-        {
-          person1_inside2 = 1;
-        }
-        else{
-          person1_inside2 = 0;
-        }
+      if (circle2.getBounds().contains(personLatLng) ){
+        person1_inside2 = 1;
         fetch('http://localhost:8080/ipfs/QmfSwY59NkktLzz3eBVZAicJQNYPVPHHKkP8ZVvg9a6kL6')
         .then(response => response.json())
         .then(data => {
-          response.style.display = 'block';
+          const responseElement = document.getElementById('response');
+          responseElement.style.display = 'block';
           //data = JSON.parse(data);
           console.log(data);
           //console.log(data);
           // Restaurant Details
           document.getElementById('restaurant').innerText = data.restaurant;
           document.getElementById('id').innerText = data.id;
-      
           
           // Menu
           const menuList = document.getElementById('menu');
+          menuList.innerText = "";
           data.menu.forEach(item => {
             // Check if item already exists in the list
             const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
@@ -218,10 +224,10 @@ document.addEventListener("DOMContentLoaded", function () {
               li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
               menuList.appendChild(li);
             }
-          });
-      
+          })
           // Available Tables
           const tablesList = document.getElementById('available_tables');
+          tablesList.innerText = "";
           data.available_tables.forEach(table => {
             // Check if table already exists in the list
             const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
@@ -239,14 +245,18 @@ document.addEventListener("DOMContentLoaded", function () {
         });  
         circle2.setStyle({ color: 'green', fillColor: 'green' });
       } else {
-        circle2.setStyle({ color: 'red', fillColor: 'red' });
+        person1_inside2 = 0;
+        if(person2_inside2 == 0)
+        {
+          circle2.setStyle({ color: 'red', fillColor: 'red' });
+        }
       }
 
       index = (index + 1) % vamCoords.length;
 
       if (index === 0) {
         // Restart the animation after a delay (adjust the delay as needed)
-        setTimeout(animateMarker, 1000); // Delay in milliseconds (2 seconds-2000)
+        setTimeout(animateMarker, 500); // Delay in milliseconds (2 seconds-2000)
       } else {
         // Schedule the next position update without a delay
         updatePosition();
@@ -269,21 +279,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
       // Check if the person icon is inside the circle rsu1
       var personLatLng = marker2.getLatLng();
-      if (circle.getBounds().contains(personLatLng) || person1_inside==1) {
-        if(circle.getBounds().contains(personLatLng))
-        {
-          person2_inside = 1;
-        }
-        else{
-          person2_inside = 0;
-        }
+      if (circle.getBounds().contains(personLatLng)) {
+        person2_inside = 1;
         fetch('http://localhost:8080/ipfs/Qme6vrVn9NKk2SaUTMqtNxi5oLZ5zPYANq4EpJ6Kiq6hDu')
         .then(response => response.json())
         .then(data => {
-          response.style.display = 'block';
+          const responseElement = document.getElementById('response2');
+          responseElement.style.display = 'block';
           //data = JSON.parse(data);
           console.log(data);
           //console.log(data);
+
           // Restaurant Details
           document.getElementById('restaurant2').innerText = data.restaurant;
           document.getElementById('id2').innerText = data.id;
@@ -300,8 +306,7 @@ document.addEventListener("DOMContentLoaded", function () {
               li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
               menuList.appendChild(li);
             }
-          });
-      
+          })
           // Available Tables
           const tablesList = document.getElementById('available_tables2');
           data.available_tables.forEach(table => {
@@ -322,30 +327,27 @@ document.addEventListener("DOMContentLoaded", function () {
         circle.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         person2_inside = 0;
-        //document.getElementById('response').innerText = "";
-        circle.setStyle({ color: 'red', fillColor: 'red' });
+        if(person1_inside==0)
+        {
+          //document.getElementById('response').innerText = "";
+          circle.setStyle({ color: 'red', fillColor: 'red' });
+        }
       }
 
       // inside circle rsu2
-      if (circle2.getBounds().contains(personLatLng) || person1_inside2 ==1) {
-        if(circle2.getBounds().contains(personLatLng))
-        {
-          person2_inside2 = 1;
-        }
-        else{
-          person2_inside2 = 0;
-        }
+      if (circle2.getBounds().contains(personLatLng)) {
+        person2_inside2 = 1;
         fetch('http://localhost:8080/ipfs/QmfSwY59NkktLzz3eBVZAicJQNYPVPHHKkP8ZVvg9a6kL6')
         .then(response => response.json())
         .then(data => {
-          response.style.display = 'block';
+          const responseElement = document.getElementById('response2');
+          responseElement.style.display = 'block';
           //data = JSON.parse(data);
           console.log(data);
           //console.log(data);
           // Restaurant Details
           document.getElementById('restaurant2').innerText = data.restaurant;
           document.getElementById('id2').innerText = data.id;
-      
           
           // Menu
           const menuList = document.getElementById('menu2');
@@ -359,7 +361,7 @@ document.addEventListener("DOMContentLoaded", function () {
               menuList.appendChild(li);
             }
           });
-      
+    
           // Available Tables
           const tablesList = document.getElementById('available_tables2');
           data.available_tables.forEach(table => {
@@ -380,14 +382,17 @@ document.addEventListener("DOMContentLoaded", function () {
         circle2.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         person2_inside2 = 0;
-        circle2.setStyle({ color: 'red', fillColor: 'red' });
+        if(person1_inside2==0)
+        {
+          circle2.setStyle({ color: 'red', fillColor: 'red' });
+        }
       }
 
       index = (index + 1) % vamCoords2.length;
 
       if (index === 0) {
         // Restart the animation after a delay (adjust the delay as needed)
-        setTimeout(animateMarker2, 1000); // Delay in milliseconds (2 seconds-2000)
+        setTimeout(animateMarker2, 500); // Delay in milliseconds (2 seconds-2000)
       } else {
         // Schedule the next position update without a delay
         updatePosition();
@@ -399,6 +404,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Request vam_coords from the server every 5 seconds -> 5000
-  setInterval(requestVamCoords, 3000);
-  setInterval(requestVamCoords2, 3000);
+  setInterval(requestVamCoords, 500);
+  setInterval(requestVamCoords2, 500);
 });

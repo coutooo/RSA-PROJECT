@@ -3,10 +3,4 @@ TER UM LOG FILE!
 
 https://code.nap.av.it.pt/mobility-networks/ipfs-cluster
 
-filtar os nomes da ementa para nao dar append ao do outro restaurant
-
-nao deixar verificar nos dois sitios os circulos
-
 bonus pagina para guardar ementas atualizar espacos livres
-
-talvez trocar cor dos markers
