@@ -84,3 +84,14 @@
 =============== May 31, 2023 (UTC) ===============
 01:17:17.531917 db@close closing
 01:17:17.551468 db@close done T·19.504731ms
+=============== May 31, 2023 (UTC) ===============
+15:53:31.188325 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+15:53:31.191506 version@stat F·[0 1] S·2KiB[0B 2KiB] Sc·[0.00 0.00]
+15:53:31.192306 db@open opening
+15:53:31.192466 journal@recovery F·1
+15:53:31.193566 journal@recovery recovering @16
+15:53:31.202335 memdb@flush created L0@19 N·7 S·1KiB "/F5..E6A,v45":"/pr..RHQ,v46"
+15:53:31.226844 version@stat F·[1 1] S·4KiB[1KiB 2KiB] Sc·[0.25 0.00]
+15:53:31.252575 db@janitor F·5 G·1
+15:53:31.252597 db@janitor removing table-15
+15:53:31.252632 db@open done T·60.228333ms

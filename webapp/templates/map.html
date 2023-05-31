@@ -100,35 +100,63 @@
     .data-item span {
       font-weight: bold;
     }
+    .grid-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
   </style>
-  
-  <div id="response" class="container1">
-    <div class="delete-button">
-      <button class="btn btn-danger" id="deleteButton" style="float: right;">X</button>
-    </div>    
-    <div class="data-section">
-      <h2>Restaurant Details</h2>
-      <div class="data-item">
-        <span>Restaurant:</span> <span id="restaurant"></span>
+  <div class="grid-container">
+    <div id="response" class="container1">
+      <div class="delete-button">
+        <button class="btn btn-danger" id="deleteButton" style="float: right;">X</button>
+      </div>    
+      <div class="data-section">
+        <h2>Client 1</h2>
+        <div class="data-item">
+          <span>Restaurant:</span> <span id="restaurant"></span>
+        </div>
+        <div class="data-item">
+          <span>RSU:</span> <span id="id"></span>
+        </div>
       </div>
-      <div class="data-item">
-        <span>RSU:</span> <span id="id"></span>
+    
+      <div class="data-section">
+        <h2>Menu</h2>
+        <ul id="menu"></ul>
+      </div>
+    
+      <div class="data-section">
+        <h2>Available Tables</h2>
+        <ul id="available_tables"></ul>
       </div>
     </div>
-  
-    <div class="data-section">
-      <h2>Menu</h2>
-      <ul id="menu"></ul>
-    </div>
-  
-    <div class="data-section">
-      <h2>Available Tables</h2>
-      <ul id="available_tables"></ul>
+    
+    <div id="response" class="container1">
+      <div class="delete-button">
+        <button class="btn btn-danger" id="deleteButton" style="float: right;">X</button>
+      </div>    
+      <div class="data-section">
+        <h2>Client 2</h2>
+        <div class="data-item">
+          <span>Restaurant:</span> <span id="restaurant2"></span>
+        </div>
+        <div class="data-item">
+          <span>RSU:</span> <span id="id2"></span>
+        </div>
+      </div>
+    
+      <div class="data-section">
+        <h2>Menu</h2>
+        <ul id="menu2"></ul>
+      </div>
+    
+      <div class="data-section">
+        <h2>Available Tables</h2>
+        <ul id="available_tables2"></ul>
+      </div>
     </div>
   </div>
-  
-  
-  
 
 </body>
 </html>

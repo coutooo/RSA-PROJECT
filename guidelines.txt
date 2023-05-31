@@ -3,6 +3,10 @@ TER UM LOG FILE!
 
 https://code.nap.av.it.pt/mobility-networks/ipfs-cluster
 
-fazer o mesmo para a rsu2 mas trocar a cor do marker
+filtar os nomes da ementa para nao dar append ao do outro restaurant
 
-ver do ipfs para trocar as informacoes (podemos trocar mm sem ipfs)
+nao deixar verificar nos dois sitios os circulos
+
+bonus pagina para guardar ementas atualizar espacos livres
+
+talvez trocar cor dos markers
