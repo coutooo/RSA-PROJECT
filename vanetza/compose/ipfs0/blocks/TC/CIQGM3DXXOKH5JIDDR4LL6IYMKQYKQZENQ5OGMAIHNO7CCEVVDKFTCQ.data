@@ -1,17 +1,18 @@
-{
+
+œ”{
     "restaurant": "O Bairro",
     "id": 2,
     "menu": [
         {
-            "name": "Carne a Alentejana",
+            "name": "chocolate",
             "price": 10.0,
-            "description": "bem bom"
+            "description": "bom"
         }
     ],
     "available_tables": [
         {
-            "id": 4,
+            "id": 8,
             "seats": 4
         }
     ]
-}
+}”

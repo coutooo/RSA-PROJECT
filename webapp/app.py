@@ -92,6 +92,12 @@ def submit_info():
         restaurant = request.form['restaurant']
         id = int(request.form['id'])
 
+        # Delete the old CID for the restaurant in ipfs
+        old_restaurant = Restaurant.query.filter_by(name=restaurant).first()
+        if old_restaurant:
+            old_cid = old_restaurant.cid
+            delete_cid(old_cid)  # Function to delete the old CID
+
         # Parse the menu items
         menu_items = []
         menu_count = 0
@@ -188,6 +194,15 @@ def get_cid():
 
     # Return an error message if the restaurant is not found or the name is not provided
     return 'Restaurant not found or name not provided'
+
+def delete_cid(cid):
+    url = f'http://localhost:5001/api/v0/pin/rm/{cid}'  # IPFS REST API endpoint
+    response = requests.delete(url)
+    if response.status_code == 200:
+        return True
+    else:
+        return False
+
 
 if __name__ == "__main__":
     app.run(debug=True)

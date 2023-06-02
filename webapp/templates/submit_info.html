@@ -69,39 +69,101 @@
             <input type="number" name="id" id="id" required><br><br>
 
             <h2>Menu:</h2>
-            <div>
-                <label for="menu_name_0">Name:</label>
-                <input type="text" name="menu_name_0" id="menu_name_0" required>
+            <div id="menu-container">
+                <div>
+                    <label for="menu_name_0">Name:</label>
+                    <input type="text" name="menu_name_0" id="menu_name_0" required>
+                </div>
+                <div>
+                    <label for="menu_price_0">Price:</label>
+                    <input type="number" name="menu_price_0" id="menu_price_0" step="0.01" required>
+                </div>
+                <div>
+                    <label for="menu_description_0">Description:</label>
+                    <input type="text" name="menu_description_0" id="menu_description_0" required>
+                </div>
+                <br>
             </div>
-            <div>
-                <label for="menu_price_0">Price:</label>
-                <input type="number" name="menu_price_0" id="menu_price_0" step="0.01" required>
-            </div>
-            <div>
-                <label for="menu_description_0">Description:</label>
-                <input type="text" name="menu_description_0" id="menu_description_0" required>
-            </div>
-            <br>
-
-            <!-- Repeat the above structure for the remaining menu items -->
+            <button type="button" onclick="addMenu()">Add Menu</button>
+            <br><br>
 
             <h2>Available Tables:</h2>
-            <div>
-                <label for="table_id_0">ID:</label>
-                <input type="number" name="table_id_0" id="table_id_0" required>
+            <div id="table-container">
+                <div>
+                    <label for="table_id_0">ID:</label>
+                    <input type="number" name="table_id_0" id="table_id_0" required>
+                </div>
+                <div>
+                    <label for="table_seats_0">Seats:</label>
+                    <input type="number" name="table_seats_0" id="table_seats_0" required>
+                </div>
+                <br>
             </div>
-            <div>
-                <label for="table_seats_0">Seats:</label>
-                <input type="number" name="table_seats_0" id="table_seats_0" required>
-            </div>
-            <br>
-
-            <!-- Repeat the above structure for the remaining available tables -->
+            <button type="button" onclick="addTable()">Add Table</button>
+            <br><br>
 
             <div class="button-container">
                 <input type="submit" value="Create Info">
             </div>
         </form>
     </div>
+
+    <script>
+        let menuCount = 0;
+        let tableCount = 0;
+
+        function addMenu() {
+            menuCount++;
+
+            const menuContainer = document.getElementById('menu-container');
+
+            const menuDiv = document.createElement('div');
+            menuDiv.innerHTML = `
+                <label for="menu_name_${menuCount}">Name:</label>
+                <input type="text" name="menu_name_${menuCount}" id="menu_name_${menuCount}" required>
+            `;
+            menuContainer.appendChild(menuDiv);
+
+            const priceDiv = document.createElement('div');
+            priceDiv.innerHTML = `
+                <label for="menu_price_${menuCount}">Price:</label>
+                <input type="number" name="menu_price_${menuCount}" id="menu_price_${menuCount}" step="0.01" required>
+            `;
+            menuContainer.appendChild(priceDiv);
+
+            const descriptionDiv = document.createElement('div');
+            descriptionDiv.innerHTML = `
+                <label for="menu_description_${menuCount}">Description:</label>
+                <input type="text" name="menu_description_${menuCount}" id="menu_description_${menuCount}" required>
+            `;
+            menuContainer.appendChild(descriptionDiv);
+
+            const br = document.createElement('br');
+            menuContainer.appendChild(br);
+        }
+
+        function addTable() {
+            tableCount++;
+
+            const tableContainer = document.getElementById('table-container');
+
+            const tableDiv = document.createElement('div');
+            tableDiv.innerHTML = `
+                <label for="table_id_${tableCount}">ID:</label>
+                <input type="number" name="table_id_${tableCount}" id="table_id_${tableCount}" required>
+            `;
+            tableContainer.appendChild(tableDiv);
+
+            const seatsDiv = document.createElement('div');
+            seatsDiv.innerHTML = `
+                <label for="table_seats_${tableCount}">Seats:</label>
+                <input type="number" name="table_seats_${tableCount}" id="table_seats_${tableCount}" required>
+            `;
+            tableContainer.appendChild(seatsDiv);
+
+            const br = document.createElement('br');
+            tableContainer.appendChild(br);
+        }
+    </script>
 </body>
 </html>

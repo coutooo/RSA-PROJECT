@@ -1,0 +1,54 @@
+
+²ª{
+    "restaurant": "O Bairro",
+    "id": 2,
+    "menu": [
+        {
+            "name": "11",
+            "price": 1.0,
+            "description": "1"
+        },
+        {
+            "name": "2",
+            "price": 2.0,
+            "description": "2"
+        },
+        {
+            "name": "3",
+            "price": 3.0,
+            "description": "3"
+        },
+        {
+            "name": "4",
+            "price": 4.0,
+            "description": "4"
+        },
+        {
+            "name": "5",
+            "price": 5.0,
+            "description": "5"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 1,
+            "seats": 2
+        },
+        {
+            "id": 3,
+            "seats": 4
+        },
+        {
+            "id": 5,
+            "seats": 6
+        },
+        {
+            "id": 7,
+            "seats": 8
+        },
+        {
+            "id": 9,
+            "seats": 9
+        }
+    ]
+}ª
