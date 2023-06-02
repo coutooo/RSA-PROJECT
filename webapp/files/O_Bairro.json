@@ -1,0 +1,17 @@
+{
+    "restaurant": "O Bairro",
+    "id": 2,
+    "menu": [
+        {
+            "name": "Filetes",
+            "price": 12.0,
+            "description": "peixe"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 4,
+            "seats": 4
+        }
+    ]
+}

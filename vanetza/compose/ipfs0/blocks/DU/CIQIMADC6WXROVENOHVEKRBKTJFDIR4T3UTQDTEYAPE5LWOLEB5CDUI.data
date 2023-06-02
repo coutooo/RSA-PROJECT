@@ -1,0 +1,18 @@
+
+êà{
+    "restaurant": "10",
+    "id": 10,
+    "menu": [
+        {
+            "name": "10",
+            "price": 1.0,
+            "description": "01"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 10,
+            "seats": 10
+        }
+    ]
+}à

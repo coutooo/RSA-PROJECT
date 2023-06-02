@@ -1,0 +1,17 @@
+{
+    "restaurant": "9",
+    "id": 9,
+    "menu": [
+        {
+            "name": "9",
+            "price": 9.0,
+            "description": "9"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 9,
+            "seats": 9
+        }
+    ]
+}

@@ -78,9 +78,8 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
-        //console.log(response); // Print the response to the console
+
         vamCoords = response;
-        console.log(vamCoords);
 
         if (vamCoords.length > 0) {
           animateMarker();
@@ -98,9 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     xhr.onreadystatechange = function () {
       if (xhr.readyState === 4 && xhr.status === 200) {
         var response = JSON.parse(xhr.responseText);
-        //console.log(response); // Print the response to the console
         vamCoords2 = response;
-        console.log(vamCoords2);
 
         if (vamCoords2.length > 0) {
           animateMarker2();
@@ -143,55 +140,65 @@ document.addEventListener("DOMContentLoaded", function () {
       var personLatLng = marker.getLatLng();
       if (circle.getBounds().contains(personLatLng)) {
         person1_inside = 1;
-        fetch('http://localhost:8080/ipfs/Qme6vrVn9NKk2SaUTMqtNxi5oLZ5zPYANq4EpJ6Kiq6hDu')
-        .then(response => response.json())
-        .then(data => {
-          const responseElement = document.getElementById('response');
-          responseElement.style.display = 'block';
-          //data = JSON.parse(data);
-          console.log(data);
-          //console.log(data);
-          // Restaurant Details
-          
-          document.getElementById('restaurant').innerText = data.restaurant;
-          document.getElementById('id').innerText = data.id;
+        const restaurantName = "Gran Torino"; // Replace with the actual restaurant name
+
+        // Fetch the CID for the restaurant
+        fetch(`/get_cid?restaurant=${restaurantName}`)
+          .then(response => response.text())
+          .then(cid => {
+            const responseElement = document.getElementById('response2');
+            responseElement.style.display = 'block';
+
+            console.log(cid+"cid");
+
+            // Make a request to fetch the data using the CID
+            fetch(`http://localhost:8080/ipfs/${cid}`)  
+              .then(response => response.json())
+              .then(data => {
+
+                const responseElement = document.getElementById('response');
+                responseElement.style.display = 'block';
+                // Restaurant Details
+                
+                document.getElementById('restaurant').innerText = data.restaurant;
+                document.getElementById('id').innerText = data.id;
       
           
-          // Menu
-          const menuList = document.getElementById('menu');
-          menuList.innerText = "";
-          data.menu.forEach(item => {
-            // Check if item already exists in the list
-            const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
-            if (!existingItem) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
-              li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
-              menuList.appendChild(li);
-            }
-          })
-          // Available Tables
-          const tablesList = document.getElementById('available_tables');
-          tablesList.innerText = "";
-          data.available_tables.forEach(table => {
-            // Check if table already exists in the list
-            const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
-            if (!existingTable) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
-              li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
-              tablesList.appendChild(li);
-            }
-          });
+                // Menu
+                const menuList = document.getElementById('menu');
+                menuList.innerText = "";
+                data.menu.forEach(item => {
+                  // Check if item already exists in the list
+                  const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
+                  if (!existingItem) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
+                    li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
+                    menuList.appendChild(li);
+                  }
+                })
+                // Available Tables
+                const tablesList = document.getElementById('available_tables');
+                tablesList.innerText = "";
+                data.available_tables.forEach(table => {
+                  // Check if table already exists in the list
+                  const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
+                  if (!existingTable) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
+                    li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
+                    tablesList.appendChild(li);
+                  }
+                });
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                // Handle the error here
+              });      
         })
-        .catch(error => {
-          console.error('Error:', error);
-          // Handle the error here
-        });      
-        circle.setStyle({ color: 'green', fillColor: 'green' });
+        circle.setStyle({ color: 'green', fillColor: 'green' });    
       } else {
         person1_inside=0;
-        //document.getElementById('response').innerText = "";
         if(person2_inside==0){
           circle.setStyle({ color: 'red', fillColor: 'red' });
         }
@@ -200,49 +207,59 @@ document.addEventListener("DOMContentLoaded", function () {
       // inside circle rsu2
       if (circle2.getBounds().contains(personLatLng) ){
         person1_inside2 = 1;
-        fetch('http://localhost:8080/ipfs/QmfSwY59NkktLzz3eBVZAicJQNYPVPHHKkP8ZVvg9a6kL6')
-        .then(response => response.json())
-        .then(data => {
-          const responseElement = document.getElementById('response');
-          responseElement.style.display = 'block';
-          //data = JSON.parse(data);
-          console.log(data);
-          //console.log(data);
-          // Restaurant Details
-          document.getElementById('restaurant').innerText = data.restaurant;
-          document.getElementById('id').innerText = data.id;
-          
-          // Menu
-          const menuList = document.getElementById('menu');
-          menuList.innerText = "";
-          data.menu.forEach(item => {
-            // Check if item already exists in the list
-            const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
-            if (!existingItem) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
-              li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
-              menuList.appendChild(li);
-            }
+        const restaurantName = "O Bairro"; // Replace with the actual restaurant name
+
+        // Fetch the CID for the restaurant
+        fetch(`/get_cid?restaurant=${restaurantName}`)
+          .then(response => response.text())
+          .then(cid => {
+            const responseElement = document.getElementById('response2');
+            responseElement.style.display = 'block';
+
+            console.log(cid+"cid");
+
+            // Make a request to fetch the data using the CID
+            fetch(`http://localhost:8080/ipfs/${cid}`)
+              .then(response => response.json())
+              .then(data => {
+                const responseElement = document.getElementById('response');
+                responseElement.style.display = 'block';
+                // Restaurant Details
+                document.getElementById('restaurant').innerText = data.restaurant;
+                document.getElementById('id').innerText = data.id;
+                
+                // Menu
+                const menuList = document.getElementById('menu');
+                menuList.innerText = "";
+                data.menu.forEach(item => {
+                  // Check if item already exists in the list
+                  const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
+                  if (!existingItem) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
+                    li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
+                    menuList.appendChild(li);
+                  }
+                })
+                // Available Tables
+                const tablesList = document.getElementById('available_tables');
+                tablesList.innerText = "";
+                data.available_tables.forEach(table => {
+                  // Check if table already exists in the list
+                  const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
+                  if (!existingTable) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
+                    li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
+                    tablesList.appendChild(li);
+                  }
+                });
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                // Handle the error here
+              });  
           })
-          // Available Tables
-          const tablesList = document.getElementById('available_tables');
-          tablesList.innerText = "";
-          data.available_tables.forEach(table => {
-            // Check if table already exists in the list
-            const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
-            if (!existingTable) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
-              li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
-              tablesList.appendChild(li);
-            }
-          });
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          // Handle the error here
-        });  
         circle2.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         person1_inside2 = 0;
@@ -281,49 +298,59 @@ document.addEventListener("DOMContentLoaded", function () {
       var personLatLng = marker2.getLatLng();
       if (circle.getBounds().contains(personLatLng)) {
         person2_inside = 1;
-        fetch('http://localhost:8080/ipfs/Qme6vrVn9NKk2SaUTMqtNxi5oLZ5zPYANq4EpJ6Kiq6hDu')
-        .then(response => response.json())
-        .then(data => {
-          const responseElement = document.getElementById('response2');
-          responseElement.style.display = 'block';
-          //data = JSON.parse(data);
-          console.log(data);
-          //console.log(data);
+        const restaurantName = "Gran Torino"; // Replace with the actual restaurant name
 
-          // Restaurant Details
-          document.getElementById('restaurant2').innerText = data.restaurant;
-          document.getElementById('id2').innerText = data.id;
+        // Fetch the CID for the restaurant
+        fetch(`/get_cid?restaurant=${restaurantName}`)
+          .then(response => response.text())
+          .then(cid => {
+            const responseElement = document.getElementById('response2');
+            responseElement.style.display = 'block';
+
+            console.log(cid+"cid");
+
+            // Make a request to fetch the data using the CID
+            fetch(`http://localhost:8080/ipfs/${cid}`)
+              .then(response => response.json())
+              .then(data => {
+                const responseElement = document.getElementById('response2');
+                responseElement.style.display = 'block';
+
+                // Restaurant Details
+                document.getElementById('restaurant2').innerText = data.restaurant;
+                document.getElementById('id2').innerText = data.id;
       
           
-          // Menu
-          const menuList = document.getElementById('menu2');
-          data.menu.forEach(item => {
-            // Check if item already exists in the list
-            const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
-            if (!existingItem) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
-              li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
-              menuList.appendChild(li);
-            }
-          })
-          // Available Tables
-          const tablesList = document.getElementById('available_tables2');
-          data.available_tables.forEach(table => {
-            // Check if table already exists in the list
-            const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
-            if (!existingTable) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
-              li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
-              tablesList.appendChild(li);
-            }
-          });
+                // Menu
+                const menuList = document.getElementById('menu2');
+                data.menu.forEach(item => {
+                  // Check if item already exists in the list
+                  const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
+                  if (!existingItem) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
+                    li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
+                    menuList.appendChild(li);
+                  }
+                });
+                // Available Tables
+                const tablesList = document.getElementById('available_tables2');
+                data.available_tables.forEach(table => {
+                  // Check if table already exists in the list
+                  const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
+                  if (!existingTable) {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
+                    li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
+                    tablesList.appendChild(li);
+                  }
+                });
+              })
+              .catch(error => {
+                console.error('Error:', error);
+                // Handle the error here
+              });      
         })
-        .catch(error => {
-          console.error('Error:', error);
-          // Handle the error here
-        });      
         circle.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         person2_inside = 0;
@@ -337,48 +364,60 @@ document.addEventListener("DOMContentLoaded", function () {
       // inside circle rsu2
       if (circle2.getBounds().contains(personLatLng)) {
         person2_inside2 = 1;
-        fetch('http://localhost:8080/ipfs/QmfSwY59NkktLzz3eBVZAicJQNYPVPHHKkP8ZVvg9a6kL6')
-        .then(response => response.json())
-        .then(data => {
-          const responseElement = document.getElementById('response2');
-          responseElement.style.display = 'block';
-          //data = JSON.parse(data);
-          console.log(data);
-          //console.log(data);
-          // Restaurant Details
-          document.getElementById('restaurant2').innerText = data.restaurant;
-          document.getElementById('id2').innerText = data.id;
+        const restaurantName = "O Bairro"; // Replace with the actual restaurant name
+
+        // Fetch the CID for the restaurant
+        fetch(`/get_cid?restaurant=${restaurantName}`)
+          .then(response => response.text())
+          .then(cid => {
+            
+            const responseElement = document.getElementById('response2');
+            responseElement.style.display = 'block';
+
+            console.log(cid+"cid");
+
+          // Make a request to fetch the data using the CID
+          fetch(`http://localhost:8080/ipfs/${cid}`)
+            .then(response => response.json())
+            .then(data => {
+              const responseElement = document.getElementById('response2');
+              responseElement.style.display = 'block';
+
+              // Restaurant Details
+              document.getElementById('restaurant2').innerText = data.restaurant;
+              document.getElementById('id2').innerText = data.id;
           
-          // Menu
-          const menuList = document.getElementById('menu2');
-          data.menu.forEach(item => {
-            // Check if item already exists in the list
-            const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
-            if (!existingItem) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
-              li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
-              menuList.appendChild(li);
-            }
-          });
+              // Menu
+              const menuList = document.getElementById('menu2');
+              data.menu.forEach(item => {
+                // Check if item already exists in the list
+                const existingItem = menuList.querySelector(`[data-name="${item.name}"]`);
+                if (!existingItem) {
+                  const li = document.createElement('li');
+                  li.innerHTML = `<span>Name:</span> ${item.name}, <span>Price:</span> ${item.price}, <span>Description:</span> ${item.description}`;
+                  li.setAttribute('data-name', item.name); // Add a data attribute to identify the item
+                  menuList.appendChild(li);
+                }
+              });
     
-          // Available Tables
-          const tablesList = document.getElementById('available_tables2');
-          data.available_tables.forEach(table => {
-            // Check if table already exists in the list
-            const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
-            if (!existingTable) {
-              const li = document.createElement('li');
-              li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
-              li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
-              tablesList.appendChild(li);
-            }
-          });
-        })
-        .catch(error => {
-          console.error('Error:', error);
-          // Handle the error here
-        });     
+              // Available Tables
+              const tablesList = document.getElementById('available_tables2');
+              data.available_tables.forEach(table => {
+                // Check if table already exists in the list
+                const existingTable = tablesList.querySelector(`[data-id="${table.id}"]`);
+                if (!existingTable) {
+                  const li = document.createElement('li');
+                  li.innerHTML = `<span>ID:</span> ${table.id}, <span>Seats:</span> ${table.seats}`;
+                  li.setAttribute('data-id', table.id); // Add a data attribute to identify the table
+                  tablesList.appendChild(li);
+                }
+              });
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              // Handle the error here
+            });     
+          })
         circle2.setStyle({ color: 'green', fillColor: 'green' });
       } else {
         person2_inside2 = 0;

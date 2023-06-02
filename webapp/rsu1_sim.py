@@ -35,11 +35,11 @@ def on_message(client, userdata, msg):
 
     distance = geodesic(rsu1_coords, vam_coords_distance).meters
 
-    if distance < 50 and tmp != distance:
-        tmp = distance
-        print("Send information to the client from RSU 1 ({:.4f} meters)".format(distance))
-    else:
-        print("Client too far from RSU 1 ({:.4f} meters)".format(distance))
+    #if distance < 50 and tmp != distance:
+    #    tmp = distance
+    #    print("Send information to the client from RSU 1 ({:.4f} meters)".format(distance))
+    #else:
+    #    print("Client too far from RSU 1 ({:.4f} meters)".format(distance))
 
     return vam_coords_list
 

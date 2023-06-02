@@ -1,0 +1,17 @@
+{
+    "restaurant": "Mestre do Leme",
+    "id": 3,
+    "menu": [
+        {
+            "name": "soja",
+            "price": 5.0,
+            "description": "ola"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 10,
+            "seats": 4
+        }
+    ]
+}
