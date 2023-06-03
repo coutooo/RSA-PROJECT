@@ -1,0 +1,22 @@
+
+ÜÔ{
+    "restaurant": "Gran Torino",
+    "id": 1,
+    "menu": [
+        {
+            "name": "asdsa",
+            "price": 12.0,
+            "description": "b0k"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 1,
+            "seats": 4
+        },
+        {
+            "id": 3,
+            "seats": 6
+        }
+    ]
+}Ô
