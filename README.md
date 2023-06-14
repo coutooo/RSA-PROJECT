@@ -1,5 +1,7 @@
 # RSA-PROJECT
 
+WALK N SEAT
+
 source vanetza/venv/bin/activate
 
 inside vanetza docker-compose up
