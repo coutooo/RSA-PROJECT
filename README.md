@@ -1,6 +1,8 @@
 # RSA-PROJECT
 
 Walk and Seat
+
+
 https://youtu.be/GzL0hwEu2OM - demo
 
 source vanetza/venv/bin/activate
