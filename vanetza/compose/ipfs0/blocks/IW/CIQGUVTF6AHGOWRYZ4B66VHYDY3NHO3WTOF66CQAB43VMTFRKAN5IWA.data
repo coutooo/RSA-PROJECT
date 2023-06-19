@@ -1,24 +1,24 @@
-{
+
+ÌÄ{
     "restaurant": "Gran Torino",
     "id": 1,
     "menu": [
         {
             "name": "Filet Mignon",
-            "price": 14.9,
+            "price": 15.9,
             "description": "ovos rotos e legumes salteados"
         },
         {
             "name": "Picanha",
             "price": 12.9,
             "description": "arroz branco e feij\u00e3o preto"
-        },
-        {
-            "name": "Prato do Dia",
-            "price": 10.0,
-            "description": "Dourada Grelhada"
         }
     ],
     "available_tables": [
+        {
+            "id": 2,
+            "seats": 4
+        },
         {
             "id": 7,
             "seats": 4
@@ -28,4 +28,4 @@
             "seats": 2
         }
     ]
-}
+}Ä

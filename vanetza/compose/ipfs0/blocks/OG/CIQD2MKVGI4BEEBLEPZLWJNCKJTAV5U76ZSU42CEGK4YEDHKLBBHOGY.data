@@ -1,0 +1,27 @@
+
+êà{
+    "restaurant": "Gran Torino",
+    "id": 2,
+    "menu": [
+        {
+            "name": "Bife da Casa ",
+            "price": 15.0,
+            "description": "Bife de vaca com molho de cogumelos"
+        },
+        {
+            "name": "Salada do Mar",
+            "price": 9.0,
+            "description": "Salada com delicias do mar"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 3,
+            "seats": 4
+        },
+        {
+            "id": 6,
+            "seats": 2
+        }
+    ]
+}à

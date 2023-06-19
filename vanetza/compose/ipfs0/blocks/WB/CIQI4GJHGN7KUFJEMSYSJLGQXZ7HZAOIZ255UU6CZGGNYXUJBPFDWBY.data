@@ -1,0 +1,36 @@
+
+êâ{
+    "restaurant": "O Bairro",
+    "id": 2,
+    "menu": [
+        {
+            "name": "Francesinha",
+            "price": 14.0,
+            "description": "Best Sandwich in the world!"
+        },
+        {
+            "name": "Salade de Frango",
+            "price": 8.0,
+            "description": "Salada com frango, tomate, alface e queijo"
+        },
+        {
+            "name": "Arroz de Marisco",
+            "price": 30.0,
+            "description": "Vem provar os sabores do mar"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 0,
+            "seats": 2
+        },
+        {
+            "id": 3,
+            "seats": 4
+        },
+        {
+            "id": 14,
+            "seats": 2
+        }
+    ]
+}â

@@ -1,0 +1,36 @@
+
+¶®{
+    "restaurant": "Gran Torino",
+    "id": 1,
+    "menu": [
+        {
+            "name": "Dourada Grelhada",
+            "price": 12.0,
+            "description": "com arroz e batata"
+        },
+        {
+            "name": "Bife da Vazia",
+            "price": 15.0,
+            "description": "Bom bife"
+        },
+        {
+            "name": "Lulas Grelhadas",
+            "price": 14.0,
+            "description": "Com molho verde"
+        }
+    ],
+    "available_tables": [
+        {
+            "id": 0,
+            "seats": 2
+        },
+        {
+            "id": 1,
+            "seats": 4
+        },
+        {
+            "id": 2,
+            "seats": 6
+        }
+    ]
+}®
